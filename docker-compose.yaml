@@ -2,18 +2,16 @@ version: "3"
 services:
   postgres:
     image: postgres:latest
-    container_name: db
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=dbuser
       - POSTGRES_DB=input-metadata
     ports:
-      - "54320:5432"
+      - "5431:5432"
   inputs:
-    container_name: code-inputs
-    image: petreskiv/code:1.0-SNAPSHOT-2.1
+    image: petreskiv/code:1.0-SNAPSHOT-3.1
     environment:
-      - KUMULUZEE_DATASOURCES0_CONNECTIONURL=jdbc:postgresql://postgres:54320/input-metadata
+      - KUMULUZEE_DATASOURCES0_CONNECTIONURL=jdbc:postgresql://postgres:5431/input-metadata
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=dbuser
     ports:
