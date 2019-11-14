@@ -2,6 +2,7 @@ version: "3"
 services:
   postgres:
     image: postgres:latest
+    container_name: inputs_db
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=dbuser
@@ -9,11 +10,10 @@ services:
     ports:
       - "5431:5432"
   inputs:
-    image: petreskiv/code:1.0-SNAPSHOT-3.1
+    container_name: inputs_container
+    image: petreskiv/code:1.0-SNAPSHOT-4.1
     environment:
-      - KUMULUZEE_DATASOURCES0_CONNECTIONURL=jdbc:postgresql://postgres:5431/input-metadata
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=dbuser
+      - KUMULUZEE_DATASOURCES0_CONNECTIONURL=jdbc:postgresql://postgres:5432/input-metadata
     ports:
       - "8081:8081"
     depends_on:

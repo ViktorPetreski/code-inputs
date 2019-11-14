@@ -30,6 +30,11 @@
             <groupId>com.fri.code</groupId>
             <artifactId>services</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee.discovery</groupId>
+            <artifactId>kumuluzee-discovery-etcd</artifactId>
+            <version>${kumuluzee-discovery.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

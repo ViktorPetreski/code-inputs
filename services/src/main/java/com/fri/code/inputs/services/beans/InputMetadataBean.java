@@ -3,8 +3,6 @@ package com.fri.code.inputs.services.beans;
 import com.fri.code.inputs.lib.InputMetadata;
 import com.fri.code.inputs.models.converters.InputMetadataConverter;
 import com.fri.code.inputs.models.entities.InputMetadataEntity;
-import com.kumuluz.ee.rest.beans.QueryParameters;
-import com.kumuluz.ee.rest.utils.JPAUtils;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -53,7 +51,7 @@ public class InputMetadataBean {
         testInput = new InputMetadata();
         testInput.setHidden(true);
         testInput.setContent("test    ");
-        testInput.setExerciseID(1);
+        testInput.setExerciseID(2);
         inputs.add(testInput);
     }
 
