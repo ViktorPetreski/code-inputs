@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -35,32 +36,17 @@ public class InputMetadataBean {
 
     @PostConstruct
     void init() {
-        compilerApiUrl = "https://api.jdoodle.com/v1/execute";
-        clientId = "336e764a0d15862c64c12304e1d90687";
-        clientSecret = "a886859dc6d68b2744c1b434ad7c4ceb3611f5877a905a05e5f7375665f40a73";
         httpClient = ClientBuilder.newClient();
-
-
-        inputs = new ArrayList<>();
-        InputMetadata testInput = new InputMetadata();
-        testInput.setHidden(false);
-        testInput.setContent("52");
-        testInput.setExerciseID(1);
-//        testInput = createInputMetadata(testInput);
-        inputs.add(testInput);
-        testInput = new InputMetadata();
-        testInput.setHidden(true);
-        testInput.setContent("test    ");
-        testInput.setExerciseID(2);
-        inputs.add(testInput);
     }
 
     public List<InputMetadata> getInputsForExercise(Integer exerciseID) {
-        return inputs.stream().filter(input -> input.getExerciseID().equals(exerciseID)).collect(Collectors.toList());
+        TypedQuery<InputMetadataEntity> query = em.createNamedQuery("InputMetadataEntity.getInputsForExercise", InputMetadataEntity.class).setParameter(1, exerciseID);
+        return query.getResultList().stream().map(InputMetadataConverter::toDTO).collect(Collectors.toList());
     }
 
     public List<InputMetadata> getInputs() {
-        return inputs;
+        TypedQuery<InputMetadataEntity> query = em.createNamedQuery("InputMetadataEntity.getAll", InputMetadataEntity.class);
+        return query.getResultList().stream().map(InputMetadataConverter::toDTO).collect(Collectors.toList());
     }
 
     public InputMetadata createInputMetadata(InputMetadata inputMetadata) {
@@ -78,6 +64,28 @@ public class InputMetadataBean {
             throw new RuntimeException("The input was not saved");
         }
         return InputMetadataConverter.toDTO(inputMetadataEntity);
+    }
+
+    public InputMetadata putInputMetadata(Integer id, InputMetadata inputMetadata) {
+
+        InputMetadataEntity c = em.find(InputMetadataEntity.class, id);
+
+        if (c == null) {
+            return null;
+        }
+
+        InputMetadataEntity updatedInputMetadataEntity = InputMetadataConverter.toEntity(inputMetadata);
+
+        try {
+            beginTx();
+            updatedInputMetadataEntity.setID(c.getID());
+            updatedInputMetadataEntity = em.merge(updatedInputMetadataEntity);
+            commitTx();
+        } catch (Exception e) {
+            rollbackTx();
+        }
+
+        return InputMetadataConverter.toDTO(updatedInputMetadataEntity);
     }
 
     public boolean deleteInputMetadata(Integer inputID) {

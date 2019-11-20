@@ -1,0 +1,1 @@
+INSERT INTO input_entity (content, isHidden, exerciseID) VALUES ('100', FALSE, 1), ('test   ', FALSE , 1), ('1', TRUE, 1);

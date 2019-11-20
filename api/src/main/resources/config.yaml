@@ -4,12 +4,12 @@ kumuluzee:
     name: dev
   version: 1.0.0
   server:
-    base-url: http://code-inputs:8081
+    base-url: http://localhost:8081
     http:
       port: 8081
   datasources:
     - jndi-name: jdbc/InputMetadataPS
-      connection-url: jdbc:postgresql://localhost:5431/input-metadata
+      connection-url: jdbc:postgresql://localhost:5430/input-metadata
       username: dbuser
       password: postgres
       max-pool-size: 20

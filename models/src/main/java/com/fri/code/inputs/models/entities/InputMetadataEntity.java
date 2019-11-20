@@ -3,10 +3,11 @@ package com.fri.code.inputs.models.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="image_entity")
+@Table(name="input_entity")
 @NamedQueries(
         value = {
-                @NamedQuery(name = "InputMetadataEntity.getAll", query = "SELECT inp FROM InputMetadataEntity inp")
+                @NamedQuery(name = "InputMetadataEntity.getAll", query = "SELECT inp FROM InputMetadataEntity inp"),
+                @NamedQuery(name = "InputMetadataEntity.getInputsForExercise", query = "SELECT inp FROM InputMetadataEntity inp WHERE inp.ID = ?1")
         }
 )
 public class InputMetadataEntity {
