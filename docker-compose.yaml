@@ -1,6 +1,6 @@
 version: "3"
 services:
-  postgres:
+  postgres-inputs:
     image: postgres:latest
     container_name: inputs_db
     environment:
@@ -11,15 +11,16 @@ services:
       - "5431:5432"
   inputs:
     container_name: inputs_container
-    image: petreskiv/code:1.0-SNAPSHOT-5.1
+    image: petreskiv/code:1.0-SNAPSHOT-7.1
     environment:
-      KUMULUZEE_DATASOURCES0_CONNECTIONURL: jdbc:postgresql://postgres:5432/input-metadata
-      KUMULUZEE_DISCOVERY_ETCD_HOSTS: http://localhost:2379
+      KUMULUZEE_DATASOURCES0_CONNECTIONURL: jdbc:postgresql://postgres-inputs:5432/input-metadata
+#      KUMULUZEE_CONFIG_ETCD_HOSTS: http://etcd:2379
+      KUMULUZEE_DISCOVERY_ETCD_HOSTS: http://etcd:2379
     ports:
       - "8081:8081"
     depends_on:
-      - postgres
-  networks:
-    default:
-      external:
-        name: code_default
+      - postgres-inputs
+networks:
+  default:
+    external:
+      name: code_default
