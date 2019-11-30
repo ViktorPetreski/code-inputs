@@ -13,7 +13,7 @@ spec:
         app: code-inputs
     spec:
       containers:
-        - image: petreskiv/code:1.0-SNAPSHOT-8.1
+        - image: petreskiv/code:1.0-SNAPSHOT-11.1
           name: code-inputs
           env:
             - name: KUMULUZEE_DISCOVERY_CLUSTER
