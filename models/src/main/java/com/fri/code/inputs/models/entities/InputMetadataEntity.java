@@ -7,7 +7,7 @@ import javax.persistence.*;
 @NamedQueries(
         value = {
                 @NamedQuery(name = "InputMetadataEntity.getAll", query = "SELECT inp FROM InputMetadataEntity inp"),
-                @NamedQuery(name = "InputMetadataEntity.getInputsForExercise", query = "SELECT inp FROM InputMetadataEntity inp WHERE inp.ID = ?1")
+                @NamedQuery(name = "InputMetadataEntity.getInputsForExercise", query = "SELECT inp FROM InputMetadataEntity inp WHERE inp.exerciseID = ?1")
         }
 )
 public class InputMetadataEntity {

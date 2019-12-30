@@ -11,10 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriInfo;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -25,8 +21,6 @@ public class InputMetadataBean {
 
     @Inject
     private EntityManager em;
-
-    private List<InputMetadata> inputs;
 
     private String compilerApiUrl;
     private String clientId;
