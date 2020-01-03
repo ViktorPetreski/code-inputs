@@ -3,6 +3,7 @@ package com.fri.code.inputs.api.v1.resources;
 import com.fri.code.inputs.api.v1.dtos.ApiError;
 import com.fri.code.inputs.lib.InputMetadata;
 import com.fri.code.inputs.services.beans.InputMetadataBean;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -53,6 +54,7 @@ public class InputMetadataResource {
 
     @GET
     @Path("/all")
+    @Timed
     public Response getInputs() {
         List<InputMetadata> inputs = inputMetadataBean.getInputs();
         return Response.status(STATUS_OK).entity(inputs).build();

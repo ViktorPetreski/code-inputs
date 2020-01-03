@@ -32,6 +32,16 @@ spec:
             - containerPort: 8081
               name: server
               protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: server
+            initialDelaySeconds: 20
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: server
 ---
 
 apiVersion: v1
