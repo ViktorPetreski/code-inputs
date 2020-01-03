@@ -4,9 +4,9 @@ kumuluzee:
     name: dev
   version: 1.0.0
   server:
-    base-url: http://localhost:8081
+    base-url: http://localhost:8084
     http:
-      port: 8081
+      port: 8084
   datasources:
     - jndi-name: jdbc/InputMetadataPS
       connection-url: jdbc:postgresql://localhost:5430/input-metadata
@@ -16,3 +16,12 @@ kumuluzee:
   discovery:
     etcd:
       hosts: http://localhost:2379
+  health:
+    checks:
+      data-source-health-check:
+        type: liveness
+        jndi-name: jdbc/InputMetadataPS
+  metrics:
+    web-instrumentation:
+      - name: inputs-endpoint
+        url-pattern: /v1/inputs/*

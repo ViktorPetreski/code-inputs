@@ -21,8 +21,6 @@ kumuluzee:
       data-source-health-check:
         type: liveness
         jndi-name: jdbc/InputMetadataPS
-      etcd-health-check:
-        connection-url: http://etcd:2379/health
   metrics:
     web-instrumentation:
       - name: inputs-endpoint
