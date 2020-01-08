@@ -40,7 +40,8 @@ public class InputMetadataBean {
 
     public List<InputMetadata> getInputs() {
         TypedQuery<InputMetadataEntity> query = em.createNamedQuery("InputMetadataEntity.getAll", InputMetadataEntity.class);
-        return query.getResultList().stream().map(InputMetadataConverter::toDTO).collect(Collectors.toList());
+        List<InputMetadataEntity> resultList = query.getResultList();
+        return resultList.stream().map(InputMetadataConverter::toDTO).collect(Collectors.toList());
     }
 
     public InputMetadata createInputMetadata(InputMetadata inputMetadata) {

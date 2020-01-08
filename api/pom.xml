@@ -44,6 +44,26 @@
             <version>${kumuluzee-discovery.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.kumuluz.ee.graphql</groupId>
+            <artifactId>kumuluzee-graphql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee.graphql</groupId>
+            <artifactId>kumuluzee-graphql-ui</artifactId>
+        </dependency>
+        <dependency>
+            <artifactId>kumuluzee-logs-log4j2</artifactId>
+            <groupId>com.kumuluz.ee.logs</groupId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee.openapi</groupId>
+            <artifactId>kumuluzee-openapi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee.openapi</groupId>
+            <artifactId>kumuluzee-openapi-ui</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.fri.code</groupId>
             <artifactId>services</artifactId>
         </dependency>
